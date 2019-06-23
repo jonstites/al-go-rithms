@@ -12,37 +12,43 @@ type Stack struct {
 	data []interface{}
 }
 
-func newStack() Stack {
+// NewStack creates a new Stack
+func NewStack() Stack {
 	return Stack{}
 }
 
-func (stack *Stack) size() int {
+// Size returns the number of elements currently in the Stack
+func (stack *Stack) Size() int {
 	return len(stack.data)
 }
 
-func (stack *Stack) isEmpty() bool {
-	return stack.size() == 0
+// IsEmpty returns true iff there are no elements in the Stack
+func (stack *Stack) IsEmpty() bool {
+	return stack.Size() == 0
 }
 
-func (stack *Stack) peek() (interface{}, error) {
+// Peek returns the last item without removing it
+func (stack *Stack) Peek() (interface{}, error) {
 
-	if stack.isEmpty() {
+	if stack.IsEmpty() {
 		return 0, errors.New("No items to peek")
 	}
 
-	item := stack.data[stack.size()-1]
+	item := stack.data[stack.Size()-1]
 	return item, nil
 }
 
-func (stack *Stack) pop() (interface{}, error) {
-	item, err := stack.peek()
+// Pop removes and returns the last item
+func (stack *Stack) Pop() (interface{}, error) {
+	item, err := stack.Peek()
 	if err != nil {
 		return 0, errors.New("No items to pop")
 	}
-	stack.data = stack.data[:stack.size()-1]
+	stack.data = stack.data[:stack.Size()-1]
 	return item, nil
 }
 
-func (stack *Stack) push(i ...interface{}) {
+// Push adds a new item or items to the Stack
+func (stack *Stack) Push(i ...interface{}) {
 	stack.data = append(stack.data, i...)
 }
