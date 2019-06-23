@@ -5,64 +5,64 @@ import (
 )
 
 func TestIsEmpty(t *testing.T) {
-	stack := newStack()
-	if stack.isEmpty() == false {
+	stack := NewStack()
+	if stack.IsEmpty() == false {
 		t.Error("Expected empty stack")
 	}
 
-	stack.push(0)
-	if stack.isEmpty() == true {
+	stack.Push(0)
+	if stack.IsEmpty() == true {
 		t.Error("Expected non-empty stack")
 	}
 }
 
 func TestSize(t *testing.T) {
-	stack := newStack()
-	if stack.size() != 0 {
+	stack := NewStack()
+	if stack.Size() != 0 {
 		t.Error("Expected 0 size stack")
 	}
 
-	stack.push(0, 2, 0)
-	if stack.size() != 3 {
+	stack.Push(0, 2, 0)
+	if stack.Size() != 3 {
 		t.Error("Expected 3 size stack")
 	}
 
-	stack.pop()
-	if stack.size() != 2 {
+	stack.Pop()
+	if stack.Size() != 2 {
 		t.Error("Expected 2 size stack")
 	}
 }
 
 func TestPushPop(t *testing.T) {
-	stack := newStack()
-	stack.push(1, 2, 3, "abc")
+	stack := NewStack()
+	stack.Push(1, 2, 3, "abc")
 
 	var expected interface{}
 	expected = "abc"
-	actual, _ := stack.pop()
+	actual, _ := stack.Pop()
 	if actual != expected {
 		t.Error(expected, actual)
 	}
 
 	expected = 3
-	actual, _ = stack.pop()
+	actual, _ = stack.Pop()
 	if actual != expected {
 		t.Error(expected, actual)
 	}
 
 	expected = 2
-	actual, _ = stack.pop()
+	actual, _ = stack.Pop()
 	if actual != expected {
 		t.Error(expected, actual)
 	}
 
 	expected = 1
-	actual, _ = stack.pop()
+	actual, _ = stack.Pop()
 	if actual != expected {
 		t.Error(expected, actual)
 	}
 
-	_, err := stack.pop()
+	_, err := stack.Pop()
 	if err == nil {
 		t.Error("Expected error from pop of empty stack")
 	}
