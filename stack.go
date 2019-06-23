@@ -50,5 +50,7 @@ func (stack *Stack) Pop() (interface{}, error) {
 
 // Push adds a new item or items to the Stack
 func (stack *Stack) Push(i ...interface{}) {
+	// this may copy data in worst case, but amoritized time of Pop should be O(1)
+	// since in Go, the length of the slice does not have to be equal to capacity
 	stack.data = append(stack.data, i...)
 }
